@@ -20,7 +20,7 @@ CREATE TABLE mascota
 
 -- Inserts (CREATE)
 INSERT INTO mascota
-(id_residente, raza_mascota, nombre_mascota, vacuna_mascota, especie)
+(id_residente, raza_mascota, nombre_mascota, vacuna_mascota, especie, id_residente)
 VALUES ('4567', 'Siames','Romy','No','Gato')
 
 CREATE TABLE residente
@@ -41,7 +41,16 @@ CREATE TABLE residente
         CONSTRAINT PK_residente PRIMARY KEY (id_residente)
     )
 
+CREATE TABLE vehiculo
+    (
+        id_vehiculo SERIAL,
+        tipo_vehiculo VARCHAR,
+        placa VARCHAR,
+        modelo VARCHAR,
+        marca VARCHAR,
+        id_residente VARCHAR,
 
+    )
 --Inserts (Create)
 INSERT INTO parqueadero
 (num_parqueadero, matri_parqueadero, coef_parqueadero) 
@@ -57,3 +66,40 @@ UPDATE parqueadero SET num_parqueadero = 'D9' WHERE num_parqueadero = 'D10'
 
 --Deletes (Delete)
 DELETE FROM parqueadero WHERE id_parqueadero = '1'
+
+INSERT INTO parqueadero
+(num_parqueadero, matri_parqueadero, coef_parqueadero) 
+VALUES ('D12','234378236','14.64')
+
+SELECT matri_parqueadero FROM parqueadero WHERE coef_parqueadero = '3'
+
+UPDATE parqueadero SET matri_parqueadero = 'D11' WHERE matri_parqueadero = 'D12'
+
+DELETE FROM parqueadero WHERE coef_parqueadero = '2'
+
+INSERT INTO mascosta
+(id_)
+
+SELECT  
+
+UPDATE
+
+DELETE
+
+INSERT INTO residente
+(id_)
+
+SELECT
+
+UPDATE
+
+DELETE
+
+INSERT INTO vehiculo
+(matr_)
+
+SELECT
+
+UPDATE
+
+DELETE
