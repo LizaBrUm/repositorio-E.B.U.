@@ -1,19 +1,19 @@
-CREATE TABLE parqueo
+CREATE TABLE parqueadero
     (
         id_parqueadero SERIAL,
         num_parqueadero VARCHAR,
         matri_parqueadero BIGINT,
         coef_parqueadero FLOAT,
+        CONSTRAINT PK_parqueo PRIMARY KEY (id_parqueo),
+        CONSTRAINT FK_PK_residente FOREIGN KEY (id_residente) REFERENCES residente(id_residente)
     )
 
 INSERT INTO parqueadero
 (num_parqueadero, matri_parqueadero, coef_parqueadero) 
 VALUES ('D12','234378236','14.64')
 
-SELECT matri_parqueadero FROM parqueadero WHERE coef_parqueadero = '3'
-
-UPDATE parqueadero SET COEF_parqueadero = '23.87' WHERE matri_parqueadero = '14.64'
-
+SELECT matri_parqueadero FROM parqueadero WHERE coef_parqueadero = '34.65'
+UPDATE parqueadero SET coef_parqueadero = '23.87' WHERE matri_parqueadero = '14.64'
 DELETE FROM parqueadero WHERE num_parqueadero = 'D3'
 
 CREATE TABLE mascota
@@ -33,9 +33,7 @@ INSERT INTO mascota
 VALUES ('4567', 'Siames','Romy','4254','Gato')
 
 SELECT  nombre_mascota FROM mascota WHERE raza_mascosta = 'Tigrillo'
-
 UPDATE mascota SET vacuna_mascota = '6543' WHERE vacuna_mascota = '4254'
-
 DELETE FROM mascota WHERE id_mascota = '43902'
 
 CREATE TABLE residente
@@ -57,11 +55,11 @@ CREATE TABLE residente
     )
 
 INSERT INTO residente
-(id_)
+(name_residente, apellido_residente, edad, religion, id_representatante, lugar_trabajo, EPS, tel_residente, vacuna, condicion_salud, correo_residente, estado_civil)
+VALUES ('Julio', 'Hernandez', '36', 'Catolico', '28304', 'Oficina Colpensas', 'COOMEVA', '3384920', 'PHAISER', 'Saludable', 'julioh@gmail.com', 'Soltero')
 
-SELECT
-
-UPDATE
+SELECT apellido_residente FROM residente WHERE name_residente = 'Diego'
+UPDATE residente SET EPS = ''
 
 DELETE
 
@@ -72,11 +70,13 @@ CREATE TABLE vehiculo
         placa VARCHAR,
         modelo VARCHAR,
         marca VARCHAR,
-        id_residente VARCHAR
+        id_residente VARCHAR,
+         CONSTRAINT PK_vehiculo PRIMARY KEY (id_vehiculo),
+        CONSTRAINT FK_PK_residente FOREIGN KEY (id_residente) REFERENCES residente(id_residente)
     )
 
 INSERT INTO vehiculo
-(matr_)
+(tipo_vehiculo, placa, modelo, marca, id_residente)
 
 SELECT
 
