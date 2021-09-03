@@ -1,20 +1,20 @@
-CREATE TABLE parqueadero
+CREATE TABLE parqueo
     (
-        id_parqueadero SERIAL,
-        num_parqueadero VARCHAR,
-        matri_parqueadero BIGINT,
-        coef_parqueadero FLOAT,
+        id_parqueo SERIAL,
+        num_parqueo VARCHAR,
+        matri_parqueo BIGINT,
+        coef_parqueo FLOAT,
         CONSTRAINT PK_parqueo PRIMARY KEY (id_parqueo),
         CONSTRAINT FK_PK_residente FOREIGN KEY (id_residente) REFERENCES residente(id_residente)
     )
 
-INSERT INTO parqueadero
-(num_parqueadero, matri_parqueadero, coef_parqueadero) 
-VALUES ('D12','234378236','14.64')
+INSERT INTO parqueo
+(num_parqueo, matri_parqueo, coef_parqueo)
+VALUES('D3', '473298479', '23.87'),('D12','234378236','14.64')
 
-SELECT matri_parqueadero FROM parqueadero WHERE coef_parqueadero = '34.65'
-UPDATE parqueadero SET coef_parqueadero = '23.87' WHERE matri_parqueadero = '14.64'
-DELETE FROM parqueadero WHERE num_parqueadero = 'D3'
+SELECT matri_parqueo FROM parqueo WHERE id_parqueo = '62'
+UPDATE parqueo SET coef_parqueo = '23.87' WHERE matri_parqueo = '14.64'
+DELETE FROM parqueo WHERE num_parqueo = 'D3'
 
 CREATE TABLE mascota
     (
@@ -30,11 +30,11 @@ CREATE TABLE mascota
 
 INSERT INTO mascota
 (id_residente, raza_mascota, nombre_mascota, vacuna_mascota, especie)
-VALUES ('4567', 'Siames','Romy','4254','Gato')
+VALUES ('4567', 'Siames','Romy','7254','Gato'),('0912', 'Tigrillo','JJ','6590','Gato')
 
-SELECT  nombre_mascota FROM mascota WHERE raza_mascosta = 'Tigrillo'
-UPDATE mascota SET vacuna_mascota = '6543' WHERE vacuna_mascota = '4254'
-DELETE FROM mascota WHERE id_mascota = '43902'
+SELECT  nombre_mascota FROM mascota WHERE id_mascosta = '86'
+UPDATE mascota SET vacuna_mascota = '6590' WHERE vacuna_mascota = '7254'
+DELETE FROM mascota WHERE id_residente = '43902'
 
 CREATE TABLE residente
     (
@@ -56,12 +56,12 @@ CREATE TABLE residente
 
 INSERT INTO residente
 (name_residente, apellido_residente, edad, religion, id_representatante, lugar_trabajo, EPS, tel_residente, vacuna, condicion_salud, correo_residente, estado_civil)
-VALUES ('Julio', 'Hernandez', '36', 'Catolico', '28304', 'Oficina Colpensas', 'COOMEVA', '3384920', 'PHAISER', 'Saludable', 'julioh@gmail.com', 'Soltero')
+VALUES ('Julio', 'Hernandez', '36', 'Catolico', '28304', 'Oficina Colpensas', 'COOMEVA', '3384920', 'PHAISER', 'Saludable', 'julioh@gmail.com', 'Viudo'),
+('Diego', 'Fernandez', '29', 'Judio', '35497', 'Profesor de Ingles ', 'COOMEVA', '8954902', 'PHAISER', 'Saludable', 'diegof@hotmail.com', 'Soltero')
 
-SELECT apellido_residente FROM residente WHERE name_residente = 'Diego'
-UPDATE residente SET EPS = ''
-
-DELETE
+SELECT apellido_residente FROM residente WHERE id_residente = '67'
+UPDATE residente SET lugar_trabajo = 'Oficina Colpensas' WHERE lugar_trabajo = 'Profesor de Ingles'
+DELETE FROM residente WHERE vacuna = '4893294'
 
 CREATE TABLE vehiculo
     (
@@ -71,18 +71,17 @@ CREATE TABLE vehiculo
         modelo VARCHAR,
         marca VARCHAR,
         id_residente VARCHAR,
-         CONSTRAINT PK_vehiculo PRIMARY KEY (id_vehiculo),
+        CONSTRAINT PK_vehiculo PRIMARY KEY (id_vehiculo),
         CONSTRAINT FK_PK_residente FOREIGN KEY (id_residente) REFERENCES residente(id_residente)
     )
 
 INSERT INTO vehiculo
 (tipo_vehiculo, placa, modelo, marca, id_residente)
+VALUES ('Moto','UEN43A','2016','4x4','35497'),('Carro','SDE342','2018','Chevrolet','28304')
 
-SELECT
-
-UPDATE
-
-DELETE
+SELECT placa FROM vehiculo Where id_vehiculo = '41'
+UPDATE vehiculo     SET modelo = '2016' WHERE = '2018'
+DELETE FROM vehiculo WHERE placa = '892IER'
 
 CREATE TABLE propietario
     (
@@ -126,18 +125,59 @@ UPDATE
 
 DELETE
 
---Inserts (Create)
-INSERT INTO parqueadero
-(num_parqueadero, matri_parqueadero, coef_parqueadero) 
-VALUES ('D10','370568945','12.48')
+INSERT TABLE apartamento-propietario
+    (
+        id_apartamento-propietario SERIAL,
+        id_apartamento VARCHAR,
+        id_propietario VARCHAR
+        CONSTRAINT PK_apartamento-propietario PRIMARY KEY (id_apartamento-propietario),
+        CONSTRAINT FK_PK_apartamento FOREIGN KEY (id_apartamento) REFERENCES apartamento(id_apto)
+        CONSTRAINT FK_PK_propietario FOREIGN KEY (id_propietario) REFERENCES propietario(id_propietario)
+    )
 
-SELECT * FROM parqueadero
+INSERT INTO apartamento
+(matr_)
+
+SELECT
+
+UPDATE
+
+DELETE
+
+INSERT TABLE parqueadero-propietario
+    (
+        id_parqueadero-propietario SERIAL,
+        id_parqueadero VARCHAR,
+        id_propietario VARCHAR
+        CONSTRAINT PK_parqueadero-propietario PRIMARY KEY (id_parqueadero-propietario),
+        CONSTRAINT FK_PK_parqueo FOREIGN KEY (id_parqueo) REFERENCES parqueo(id_parque)
+        CONSTRAINT FK_PK_propietario FOREIGN KEY (id_propietario) REFERENCES propietario(id_propietario)
+    )
+
+INSERT INTO apartamento
+(matr_)
+
+SELECT
+
+UPDATE
+
+DELETE
+
+SELECT * FROM pg_catalog.pg_tables;
+
+--Inserts (Create)
+-- INSERT INTO parqueadero
+-- (num_parqueadero, matri_parqueadero, coef_parqueadero) 
+-- VALUES ('D10','370568945','12.48')
+
+-- SELECT * FROM parqueadero
 
 --Selects (Read)
-SELECT num_parqueadero FROM parqueadero WHERE id_parqueadero = '1'
+-- SELECT num_parqueadero FROM parqueadero WHERE id_parqueadero = '1'
 
 --Updates (Update)
-UPDATE parqueadero SET num_parqueadero = 'D9' WHERE num_parqueadero = 'D10'
+-- UPDATE parqueadero SET num_parqueadero = 'D9' WHERE num_parqueadero = 'D10'
 
 --Deletes (Delete)
-DELETE FROM parqueadero WHERE id_parqueadero = '1'
+-- DELETE FROM parqueadero WHERE id_parqueadero = '1'
+
